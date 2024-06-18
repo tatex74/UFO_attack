@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "UFO_attack.sln"
+    "dotnet.defaultSolution": "UFO Attack.sln"
 }

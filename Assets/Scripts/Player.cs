@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
 
     public GameObject after_image;
     private float after_image_timer = 0;
+    private float bullet_timer = 0;
 
     void Start()
     {
@@ -61,13 +62,13 @@ public class Player : MonoBehaviour
     }*/
 
     void Fire() {
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        bullet_timer -= Time.deltaTime;
+        if (Input.GetKey(KeyCode.Space) && bullet_timer <= 0) {
 
-            GameObject new_bullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 10), Quaternion.identity);
+            GameObject new_bullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 5), Quaternion.identity);
             rb = new_bullet.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector3(20, 0, 0);
-            
-            
+            bullet_timer = 0.15f;
         }
     }
 
@@ -79,7 +80,7 @@ public class Player : MonoBehaviour
         {
             after_image_timer = 0f;
 
-            GameObject new_after_image = Instantiate(after_image, new Vector3(transform.position.x, transform.position.y, 20), Quaternion.identity);
+            GameObject new_after_image = Instantiate(after_image, new Vector3(transform.position.x, transform.position.y, 6), Quaternion.identity);
             rb = new_after_image.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector3(-10, 0, 0);
         }
