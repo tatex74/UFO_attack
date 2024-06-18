@@ -122,6 +122,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &158199367 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6862631242138558747, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
+  m_PrefabInstance: {fileID: 1886173406}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &238146846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4291192824855510895, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
@@ -312,7 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a68e03ce56666444aa592d02caa69da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  asteroid_prefab: {fileID: 1024504458}
+  asteroid_prefab: {fileID: 6747087005932060300, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
   big_asteroids:
   - {fileID: 21300000, guid: 9c1bd92ca5744b74aa0b58413c3d1465, type: 3}
   - {fileID: 21300000, guid: 27af9b936fb0bda4eb8794be4dcf514a, type: 3}
@@ -327,11 +332,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f657ec1ca804b1c41b9a6cb767693db9, type: 3}
   - {fileID: 21300000, guid: 8d1ebf695bdfbad4fbbeda90b16d438d, type: 3}
   - {fileID: 21300000, guid: bb44a46ad10b60d4f9bd524a379e9a6b, type: 3}
---- !u!1 &1024504458 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6747087005932060300, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-  m_PrefabInstance: {fileID: 7633913726723338666}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1373729095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3384449957238118544, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8289000882824312839, guid: 30abaa2c49241a74ba28ec9102bbc355, type: 3}
+  shoot_aura: {fileID: 158199367}
   after_image: {fileID: 8200937437500518613, guid: 880ed574fa76f2e41959c9bafcd51e4f, type: 3}
 --- !u!1001 &1886173406
 PrefabInstance:
@@ -731,63 +732,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1001 &7633913726723338666
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.7496648
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.26380873
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.4078039
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 21197557729751379, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6747087005932060300, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
-      propertyPath: m_Name
-      value: AsteroidPrefab
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7b3b2a69748d50f45a05b8591c5aad2d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -796,4 +740,3 @@ SceneRoots:
   - {fileID: 1958109190}
   - {fileID: 1886173406}
   - {fileID: 710466523}
-  - {fileID: 7633913726723338666}

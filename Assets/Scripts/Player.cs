@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Vector3 start_position = new Vector3(-5, 0, 0);
     //public GameObject player_bubble;
     public GameObject bullet;
+    public GameObject shoot_aura;
     private Rigidbody2D rb;
 
     public GameObject after_image;
@@ -25,8 +26,6 @@ public class Player : MonoBehaviour
     void Update()
     {
         PlayerMouvement();
-
-        //BubbleAnimation();
 
         Fire();
 
@@ -57,10 +56,6 @@ public class Player : MonoBehaviour
         } 
     }
 
-    /*void BubbleAnimation() {
-        player_bubble.transform.localScale = Vector3.Lerp(player_bubble.transform.localScale, new Vector3(0, 0, 0), 1.0f * Time.deltaTime);
-    }*/
-
     void Fire() {
         bullet_timer -= Time.deltaTime;
         if (Input.GetKey(KeyCode.Space) && bullet_timer <= 0) {
@@ -80,9 +75,7 @@ public class Player : MonoBehaviour
         {
             after_image_timer = 0f;
 
-            GameObject new_after_image = Instantiate(after_image, new Vector3(transform.position.x, transform.position.y, 6), Quaternion.identity);
-            rb = new_after_image.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector3(-10, 0, 0);
+            Instantiate(after_image, new Vector3(transform.position.x, transform.position.y, 6), Quaternion.identity);
         }
     }
 }
