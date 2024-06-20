@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject bullet;
+    public GameObject after_image;
+
+
+    private int pv = 10;
     private float mouv_speed = 8f;
     private Vector3 start_position = new Vector3(-5, 0, 0);
-    //public GameObject player_bubble;
-    public GameObject bullet;
-    public GameObject shoot_aura;
     private Rigidbody2D rb;
-
-    public GameObject after_image;
     private float after_image_timer = 0;
     private float bullet_timer = 0;
 
@@ -59,8 +59,7 @@ public class Player : MonoBehaviour
     void Fire() {
         bullet_timer -= Time.deltaTime;
         if (Input.GetKey(KeyCode.Space) && bullet_timer <= 0) {
-
-            GameObject new_bullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 5), Quaternion.identity);
+            GameObject new_bullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             rb = new_bullet.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector3(20, 0, 0);
             bullet_timer = 0.15f;
@@ -76,6 +75,16 @@ public class Player : MonoBehaviour
             after_image_timer = 0f;
 
             Instantiate(after_image, new Vector3(transform.position.x, transform.position.y, 6), Quaternion.identity);
+        }
+    }
+
+    public void OnCollisionEnter2D(UnityEngine.Collision2D collision) {
+        switch (collision.gameObject.name) {
+            case "Ennemi_1":
+                pv -= 1;
+                break;
+            default :
+                break;
         }
     }
 }

@@ -122,11 +122,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &158199367 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6862631242138558747, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
-  m_PrefabInstance: {fileID: 1886173406}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &238146846 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4291192824855510895, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
@@ -350,7 +345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 8289000882824312839, guid: 30abaa2c49241a74ba28ec9102bbc355, type: 3}
-  shoot_aura: {fileID: 158199367}
   after_image: {fileID: 8200937437500518613, guid: 880ed574fa76f2e41959c9bafcd51e4f, type: 3}
 --- !u!1001 &1886173406
 PrefabInstance:
@@ -362,15 +356,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1386586474621022846, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.22
+      value: -4.61
       objectReference: {fileID: 0}
     - target: {fileID: 1386586474621022846, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.02
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 1386586474621022846, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1386586474621022846, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
       propertyPath: m_LocalRotation.w
@@ -406,15 +400,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2849654999460327568, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3384449957238118544, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
       propertyPath: m_Name
       value: Player Starter
       objectReference: {fileID: 0}
+    - target: {fileID: 3486667396637667692, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5853628681163071313, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118606304558876313, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118606304558876313, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8118606304558876313, guid: 911fc59e7fa4bfe4da59b453b0ba6166, type: 3}
+      propertyPath: m_UseFullKinematicContacts
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -440,6 +450,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1958109190}
   - component: {fileID: 1958109189}
+  - component: {fileID: 1958109191}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -477,6 +488,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1958109191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1958109188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 208a760639602ee40a1e9543e1fa26cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ennemis:
+  - {fileID: 8366478033714490077, guid: fc92c1e8adca5764cb6e38409ceeb437, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &2023826420
 GameObject:
   m_ObjectHideFlags: 0
