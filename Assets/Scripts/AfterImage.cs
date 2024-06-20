@@ -17,7 +17,7 @@ public class AfterImage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < -13) {
+        if (transform.position.x < -13 || transform.position.x > 13 || transform.localScale.x < 0.15) {
             Destroy(gameObject);
         }
     }

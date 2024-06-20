@@ -1,25 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Properties;
-using Unity.VisualScripting.Dependencies.Sqlite;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class Ennemi_1 : MonoBehaviour
+public class Ennemi_2 : MonoBehaviour
 {
+    public GameObject bullet;
     public GameObject explosion;
     public Sprite after_image_sprite;
     public GameObject after_image;
     private float after_image_timer = 0;
     private Rigidbody2D rb;
-    private float time = 1;
     private int pv = 1;
+    private Vector2 velocity = new Vector2(-3, 0);
+    private float pause_gap = 4;
+    private float pause_point = 0;
+    private float pause_time = 0;
+    private float time = 0;
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.name = "Ennemi_1";
+        gameObject.name = "Ennemi_2";
         transform.position = new Vector3(13, Random.Range(-4, 4), 0);
         rb = gameObject.GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(-5, 0);
+        rb.velocity = velocity;
 
         SpriteRenderer sr = after_image.GetComponent<SpriteRenderer>();
         sr.sprite = after_image_sprite;
@@ -37,18 +41,22 @@ public class Ennemi_1 : MonoBehaviour
     }
 
     public void Mouvement() {
-        if (transform.position.x <= 7 && time != 0) {
-            if (time > 0) {
-                rb.velocity = new Vector2(0, 0);
-                time -= Time.deltaTime;
-            }
-            else if (time < 0) {
-                 rb.velocity = new Vector2(-10, 0);
-            }
-            else  {
-                time = 0;
-            }
+        if (transform.position.x < pause_point) {
+            rb.velocity = new Vector2(0, 0);
+            pause_point = transform.position.x - pause_gap;
+            time = pause_time;
         }
+        if (time < 0) {
+            rb.velocity = velocity;
+        }
+    }
+
+    public void Fire() {
+        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        rb.velocity = new Vector2(-2, -1.5f);
+        Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        rb.velocity = new Vector2(-2, 1.5f);
+        Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
