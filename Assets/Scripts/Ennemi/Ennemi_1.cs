@@ -65,9 +65,6 @@ public class Ennemi_1 : MonoBehaviour
             new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
             Destroy(gameObject);
         }
-        else {
-            Destroy(gameObject);
-        }
     }
 
     void AfterImage() {

@@ -13,11 +13,9 @@ public class Ennemi_2 : MonoBehaviour
     private Rigidbody2D rb;
     private int pv = 5;
     private Vector2 velocity = new Vector2(-3, 0);
-    private float pause_gap = 4;
-    private float pause_point = 0;
-    private float pause_time = 0;
-    private float time = 0;
-    public float fire_frequency;
+    private float pause_time = 2f;
+    private bool isMoving = true;
+    private  float fire_frequency = 1f;
     void Start()
     {
         gameObject.name = "Ennemi_2";
@@ -42,24 +40,29 @@ public class Ennemi_2 : MonoBehaviour
     }
 
     public void Mouvement() {
-        if (transform.position.x < pause_point) {
-            rb.velocity = new Vector2(0, 0);
-            pause_point = transform.position.x - pause_gap;
-            time = pause_time;
-        }
-        if (time < 0) {
-            rb.velocity = velocity;
+        pause_time -= Time.deltaTime;
+        if (pause_time <= 0) {
+            if (isMoving) {
+                rb.velocity = new Vector2(0, 0);
+                isMoving = false;
+            } else {
+                rb.velocity = velocity;
+                isMoving = true;
+            }
+            pause_time = 2f;
         }
     }
 
     public void Fire() {
         fire_frequency -= Time.deltaTime;
         if (fire_frequency <= 0){
-            Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.velocity = new Vector2(-2, -1.5f);
-            Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-            rb.velocity = new Vector2(-2, 1.5f);
-            Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+            GameObject new_bullet1 = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+            GameObject new_bullet2 = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+            Rigidbody2D rb1 = new_bullet1.GetComponent<Rigidbody2D>();
+            Rigidbody2D rb2 = new_bullet2.GetComponent<Rigidbody2D>();
+            rb1.velocity = new Vector2(-5, -1.5f);
+            rb2.velocity = new Vector2(-5, 1.5f);
+            fire_frequency = 1f;
         }
     }
 
@@ -76,9 +79,6 @@ public class Ennemi_2 : MonoBehaviour
             GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
             Destroy(gameObject);
-        }
-        else {
-            //Destroy(gameObject);
         }
     }
 

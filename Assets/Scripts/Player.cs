@@ -83,6 +83,9 @@ public class Player : MonoBehaviour
             case "Ennemi_1":
                 pv -= 1;
                 break;
+            case "Ennemi_2":
+                pv -= 1;
+                break;
             default :
                 break;
         }

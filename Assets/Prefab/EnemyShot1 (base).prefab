@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6412276479107316169}
   - component: {fileID: 4326413801389473413}
   - component: {fileID: 2932608858148526614}
+  - component: {fileID: 7654430984805164846}
   m_Layer: 0
   m_Name: EnemyShot1 (base)
   m_TagString: Untagged
@@ -94,7 +95,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7906683216054837090}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -158,3 +159,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17595029, y: 0.17341766}
   m_EdgeRadius: 0
+--- !u!114 &7654430984805164846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7906683216054837090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7236985cedc0fc4f862cca70cf0cfd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
