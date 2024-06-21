@@ -10,14 +10,16 @@ public class Asteroids : MonoBehaviour
     public Sprite[] mid_asteroids;
     public Sprite[] small_asteroids;
 
-    float big_time = Random.Range(0, 13);
-    float mid_time = Random.Range(0, 6);
-    float small_time = Random.Range(0, 5);
+    float big_time;
+    float mid_time;
+    float small_time;
 
     // Start is called before the first frame update
     void Start()
     {
-       
+        big_time = Random.Range(0, 13);
+        mid_time = Random.Range(0, 6);
+        small_time = Random.Range(0, 5);
     }
 
     // Update is called once per frame

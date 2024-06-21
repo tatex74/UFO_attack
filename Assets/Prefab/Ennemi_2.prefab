@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6955751349920589356}
   - component: {fileID: 7377681157349380657}
   - component: {fileID: -1031534144839852703}
+  - component: {fileID: 1936219562269173182}
   m_Layer: 0
   m_Name: Ennemi_2
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 835211984735532820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.15596563, y: -1.2761854, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -102,6 +103,7 @@ MonoBehaviour:
   explosion: {fileID: 6460029486616987351, guid: 150bba7fe84dbb54b89f479d4f11de7e, type: 3}
   after_image_sprite: {fileID: 21300000, guid: 419d0b770c0e1ec4b8fa5e0d9ab3b22d, type: 3}
   after_image: {fileID: 6112293670982896707, guid: 23588bcd6dc3bdc4faa9410963e0004a, type: 3}
+  fire_frequency: 0.5
 --- !u!50 &-1031534144839852703
 Rigidbody2D:
   serializedVersion: 4
@@ -129,3 +131,48 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &1936219562269173182
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835211984735532820}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.02988699, y: 0.01992482}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4242873, y: 0.72691965}
+  m_EdgeRadius: 0
