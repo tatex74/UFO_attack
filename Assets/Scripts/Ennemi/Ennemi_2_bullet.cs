@@ -11,7 +11,7 @@ public class Ennemi_2_bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x > 13) {
+        if (transform.position.x < -11) {
             Destroy(gameObject);
         }
     }
