@@ -76,6 +76,7 @@ public class Ennemi_2 : MonoBehaviour
                 Destroy(gameObject);
                 FindObjectOfType<SoundManager>().PlaySound(7);
             }
+            FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy2);
         }
         else if (collision.gameObject.name == "Player Starter") {
             GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
