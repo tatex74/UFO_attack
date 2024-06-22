@@ -1,7 +1,7 @@
 using System.Data.Common;
 using UnityEngine;
 
-public class Ennemi_3 : MonoBehaviour
+public class Ennemi_4 : MonoBehaviour
 {
     public GameObject bulletPrefab;
     public GameObject explosion;
@@ -24,7 +24,7 @@ public class Ennemi_3 : MonoBehaviour
 
      void Start()
     {
-        gameObject.name = "Ennemi_3";
+        gameObject.name = "Ennemi_4";
         transform.position = new Vector3(13, Random.Range(-4, 3), 0);
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = velocity;
