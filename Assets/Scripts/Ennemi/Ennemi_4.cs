@@ -25,7 +25,7 @@ public class Ennemi_3 : MonoBehaviour
      void Start()
     {
         gameObject.name = "Ennemi_3";
-        transform.position = new Vector3(13, Random.Range(-4, 4), 0);
+        transform.position = new Vector3(13, Random.Range(-4, 3), 0);
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = velocity;
 
@@ -92,6 +92,8 @@ public class Ennemi_3 : MonoBehaviour
                 up = true;
             }
         }
+
+        FindObjectOfType<SoundManager>().PlaySound(4);
     }
 
     void AfterImage() {
@@ -113,7 +115,9 @@ public class Ennemi_3 : MonoBehaviour
                 GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
                 Destroy(gameObject);
+                FindObjectOfType<SoundManager>().PlaySound(9);
             }
+            FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy4);
         }
         else if (collision.gameObject.name == "Player Starter") {
             GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);

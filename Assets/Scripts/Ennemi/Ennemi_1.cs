@@ -17,7 +17,7 @@ public class Ennemi_1 : MonoBehaviour
     void Start()
     {
         gameObject.name = "Ennemi_1";
-        transform.position = new Vector3(13, Random.Range(-4, 4), 0);
+        transform.position = new Vector3(13, Random.Range(-4, 3), 0);
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-5, 0);
 
@@ -58,12 +58,16 @@ public class Ennemi_1 : MonoBehaviour
                 GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
                 Destroy(gameObject);
+                FindObjectOfType<SoundManager>().PlaySound(6);
             }
+            FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy1);
         }
         else if (collision.gameObject.name == "Player Starter") {
             GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
             new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
             Destroy(gameObject);
+            FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy1);
+            FindObjectOfType<SoundManager>().PlaySound(6);
         }
     }
 
