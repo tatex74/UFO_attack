@@ -102,8 +102,7 @@ MonoBehaviour:
   bullet: {fileID: 7906683216054837090, guid: 361643170d6ed3c4da890199ee1e473e, type: 3}
   explosion: {fileID: 6460029486616987351, guid: 150bba7fe84dbb54b89f479d4f11de7e, type: 3}
   after_image_sprite: {fileID: 21300000, guid: 419d0b770c0e1ec4b8fa5e0d9ab3b22d, type: 3}
-  after_image: {fileID: 6112293670982896707, guid: 23588bcd6dc3bdc4faa9410963e0004a, type: 3}
-  fire_frequency: 3
+  after_image: {fileID: 6112293670982896707, guid: 3a28433c6ba6ca44782a3d8a48b12c95, type: 3}
 --- !u!50 &-1031534144839852703
 Rigidbody2D:
   serializedVersion: 4

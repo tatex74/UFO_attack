@@ -14,7 +14,6 @@ public class EnnemiSpawner : MonoBehaviour
     {
         time_1 = Random.Range(5, 10);
         time_2 = Random.Range(5, 10);
-        time_3 = Random.Range(5, 10);
     }
 
     // Update is called once per frame
@@ -26,11 +25,15 @@ public class EnnemiSpawner : MonoBehaviour
 
         if (time_1 <= 0) {
             Instantiate(ennemis[0]);
-            time_1 = Random.Range(5, 10);
+            time_1 = Random.Range(1, 4);
         }
         if (time_2 <= 0) {
             Instantiate(ennemis[1]);
-            time_2 = Random.Range(5, 10);
+            time_2 = Random.Range(3, 7);
+        }
+        if (time_3 <= 0) {
+            Instantiate(ennemis[2]);
+            time_3 = Random.Range(5, 10);
         }
         if (time_3 <= 0) {
             Instantiate(ennemis[2]);
