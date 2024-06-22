@@ -9,6 +9,7 @@ public class EnnemiSpawner : MonoBehaviour
     private float time_1;
     private float time_2;
     private float time_3;
+    private float time_4;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class EnnemiSpawner : MonoBehaviour
         time_1 -= Time.deltaTime;
         time_2 -= Time.deltaTime;
         time_3 -= Time.deltaTime;
+        time_4 -= Time.deltaTime;
 
         if (time_1 <= 0) {
             Instantiate(ennemis[0]);
@@ -35,9 +37,9 @@ public class EnnemiSpawner : MonoBehaviour
             Instantiate(ennemis[2]);
             time_3 = Random.Range(5, 10);
         }
-        if (time_3 <= 0) {
-            Instantiate(ennemis[2]);
-            time_3 = Random.Range(5, 10);
+        if (time_4 <= 0) {
+            Instantiate(ennemis[3]);
+            time_4 = Random.Range(5, 10);
         }
     }
 }
