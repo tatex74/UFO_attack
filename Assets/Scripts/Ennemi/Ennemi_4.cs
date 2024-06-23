@@ -93,7 +93,7 @@ public class Ennemi_4 : MonoBehaviour
             }
         }
 
-        FindObjectOfType<SoundManager>().PlaySound(4);
+        FindObjectOfType<SoundManagerUFO>().PlaySound(4);
     }
 
     void AfterImage() {
@@ -115,7 +115,7 @@ public class Ennemi_4 : MonoBehaviour
                 GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
                 Destroy(gameObject);
-                FindObjectOfType<SoundManager>().PlaySound(9);
+                FindObjectOfType<SoundManagerUFO>().PlaySound(9);
             }
             FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy4);
         }

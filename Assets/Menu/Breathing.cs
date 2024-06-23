@@ -14,6 +14,7 @@ public class BreathingAnimation : MonoBehaviour
     private float currentScaleVariation;
     private float currentBreathingSpeed;
     private bool isHovered = false;
+    private float breathingTimer = 0f;
 
     void Start()
     {
@@ -24,7 +25,8 @@ public class BreathingAnimation : MonoBehaviour
 
     void Update()
     {
-        float scale = 1.0f + Mathf.Sin(Time.time * currentBreathingSpeed) * currentScaleVariation;
+        breathingTimer += Time.deltaTime;
+        float scale = 1.0f + Mathf.Sin(breathingTimer * currentBreathingSpeed) * currentScaleVariation;
         transform.localScale = initialScale * scale;
     }
 
@@ -45,10 +47,13 @@ public class BreathingAnimation : MonoBehaviour
         float initialBreathingSpeed = currentBreathingSpeed;
         float elapsedTime = 0f;
 
+        breathingTimer = 0f; // Reset the breathing timer
+
         while (elapsedTime < transitionDuration)
         {
             currentScaleVariation = Mathf.Lerp(initialScaleVariation, targetScaleVariation, elapsedTime / transitionDuration);
             currentBreathingSpeed = Mathf.Lerp(initialBreathingSpeed, targetBreathingSpeed, elapsedTime / transitionDuration);
+
             elapsedTime += Time.deltaTime;
             yield return null;
         }

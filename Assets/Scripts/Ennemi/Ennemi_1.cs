@@ -58,7 +58,7 @@ public class Ennemi_1 : MonoBehaviour
                 GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
                 new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
                 Destroy(gameObject);
-                FindObjectOfType<SoundManager>().PlaySound(6);
+                FindObjectOfType<SoundManagerUFO>().PlaySound(6);
             }
             FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy1);
         }
@@ -67,7 +67,7 @@ public class Ennemi_1 : MonoBehaviour
             new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
             Destroy(gameObject);
             FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy1);
-            FindObjectOfType<SoundManager>().PlaySound(6);
+            FindObjectOfType<SoundManagerUFO>().PlaySound(6);
         }
     }
 

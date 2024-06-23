@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
         transform.position = start_position;
 
         // Play music loop
-        FindObjectOfType<SoundManager>().PlaySound(11);
+        FindObjectOfType<SoundManagerUFO>().PlaySound(11);
     }
 
     // Update is called once per frame
@@ -66,7 +66,7 @@ public class Player : MonoBehaviour
             rb = new_bullet.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector3(20, 0, 0);
             bullet_timer = 0.15f;
-            FindObjectOfType<SoundManager>().PlaySound(1);
+            FindObjectOfType<SoundManagerUFO>().PlaySound(1);
         }
     }
 
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.name != "Bullet") {
             FindObjectOfType<LivesManager>().LoseLife();
-            FindObjectOfType<SoundManager>().PlaySound(2);
+            FindObjectOfType<SoundManagerUFO>().PlaySound(2);
         }
     }
 }
