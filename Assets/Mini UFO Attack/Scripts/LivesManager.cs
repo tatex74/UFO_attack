@@ -53,7 +53,9 @@ public class LivesManager : MonoBehaviour
     public void GainLife()
     {
         // Increment the current number of lives
-        currentLives++;
+        if (currentLives < initialLives){
+            currentLives++;
+        }
 
         // Instantiate a new life sprite
         GameObject life = Instantiate(lifePrefab, livesContainer);

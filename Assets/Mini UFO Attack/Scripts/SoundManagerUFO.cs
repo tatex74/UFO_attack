@@ -18,6 +18,7 @@ public class SoundManagerUFO : MonoBehaviour
     public AudioClip Explosion_4;
     public AudioClip Explosion_5;
     public AudioClip MegaBomb;
+    public AudioClip PowerUp;
     public AudioClip Music;
 
     // The current sound
@@ -70,6 +71,9 @@ public class SoundManagerUFO : MonoBehaviour
                 break;
             case 12:
                 currentSound = MegaBomb;
+                break;
+            case 13:
+                currentSound = PowerUp;
                 break;
             default:
                 currentSound = null;

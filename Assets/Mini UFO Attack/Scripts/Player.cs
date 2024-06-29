@@ -8,8 +8,6 @@ public class Player : MonoBehaviour
     public GameObject bullet;
     public GameObject after_image;
 
-
-    private int pv = 10;
     private float mouv_speed = 8f;
     private Vector3 start_position = new Vector3(-5, 0, 0);
     private Rigidbody2D rb;
@@ -83,7 +81,7 @@ public class Player : MonoBehaviour
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.name != "Bullet") {
+        if ((collision.gameObject.name != "Bullet") && (collision.gameObject.name != "PowerUp")) {
             FindObjectOfType<LivesManager>().LoseLife();
             FindObjectOfType<SoundManagerUFO>().PlaySound(2);
         }

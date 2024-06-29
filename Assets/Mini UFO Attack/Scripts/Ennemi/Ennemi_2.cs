@@ -7,6 +7,7 @@ public class Ennemi_2 : MonoBehaviour, IEnnemi
 {
     public GameObject bullet;
     public GameObject explosion;
+    public GameObject powerUp;
     public Sprite after_image_sprite;
     public GameObject after_image;
     private float after_image_timer = 0;
@@ -26,6 +27,10 @@ public class Ennemi_2 : MonoBehaviour, IEnnemi
 
         SpriteRenderer sr = after_image.GetComponent<SpriteRenderer>();
         sr.sprite = after_image_sprite;
+
+        GameObject newPowerUp = Instantiate(powerUp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+        Rigidbody2D rbtest = newPowerUp.GetComponent<Rigidbody2D>();
+        rbtest.velocity = new Vector2(-4f, 0);
     }
 
     // Update is called once per frame
@@ -99,5 +104,10 @@ public class Ennemi_2 : MonoBehaviour, IEnnemi
         FindObjectOfType<SoundManagerUFO>().PlaySound(7);
         FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy2);
         
+        if (Random.Range(0, 7) == 0) {
+            GameObject newPowerUp = Instantiate(powerUp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+            Rigidbody2D rb = newPowerUp.GetComponent<Rigidbody2D>();
+            rb.velocity = new Vector2(-4f, 0);
+        }
     }
 }

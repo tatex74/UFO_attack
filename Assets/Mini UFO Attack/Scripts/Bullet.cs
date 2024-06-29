@@ -18,7 +18,7 @@ public class bullet : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.name != "Player Starter")&&(collision.gameObject.name != "Ennemi_Bullet")&&(collision.gameObject.name != "Laser")){
+        if ((collision.gameObject.name != "Player Starter")&&(collision.gameObject.name != "Ennemi_Bullet")&&(collision.gameObject.name != "Laser")&&(collision.gameObject.name != "PowerUp")){
             Destroy(gameObject);
         }
     }

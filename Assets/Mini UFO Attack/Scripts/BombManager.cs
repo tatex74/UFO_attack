@@ -28,8 +28,6 @@ public class BombManager : MonoBehaviour
     private bool isBombActivated = false;
     private float bombTimer = 0f;
 
-    private IEnnemi[] ennemis;
-
     void Start()
     {
         // Initialize the current number of bombs
@@ -45,14 +43,17 @@ public class BombManager : MonoBehaviour
         // Initially, the white screen sprite should be disabled
         whiteScreenSprite.gameObject.SetActive(false);
 
-        // Find and store references to enemy scripts
-        ennemis = new IEnnemi[]
-        {
-            GameObject.Find("Ennemi_1").GetComponent<Ennemi_1>(),
-            GameObject.Find("Ennemi_2").GetComponent<Ennemi_2>(),
-            GameObject.Find("Ennemi_3").GetComponent<Ennemi_3>(),
-            GameObject.Find("Ennemi_4").GetComponent<Ennemi_4>()
-        };
+        try{
+            // Find and store references to enemy scripts
+            IEnnemi[] ennemis = new IEnnemi[]
+            {
+                FindObjectOfType<Ennemi_1>().GetComponent<Ennemi_1>(),
+                FindObjectOfType<Ennemi_2>().GetComponent<Ennemi_2>(),
+                FindObjectOfType<Ennemi_3>().GetComponent<Ennemi_3>(),
+                FindObjectOfType<Ennemi_4>().GetComponent<Ennemi_4>()
+            };
+        }catch (System.NullReferenceException){
+        }
     }
 
     private void Update()
@@ -124,6 +125,7 @@ public class BombManager : MonoBehaviour
         Transform lastBomb = bombsParent.GetChild(currentBombs);
         Destroy(lastBomb.gameObject);
         GameObject dullBomb = Instantiate(dullBombPrefab, lastBomb.position, lastBomb.rotation, bombsParent);
+        dullBomb.transform.SetSiblingIndex(currentBombs + 1);
         dullBomb.transform.localPosition = lastBomb.localPosition;
 
         FindObjectOfType<SoundManagerUFO>().PlaySound(12);
@@ -140,10 +142,15 @@ public class BombManager : MonoBehaviour
     public void GainBomb()
     {
         // Increment the current number of bombs
-        currentBombs++;
-
-        // Instantiate a new bomb sprite
-        GameObject bomb = Instantiate(bombPrefab, bombsParent);
-        bomb.transform.localPosition = new Vector3((currentBombs - 1) * bombSpacing, 0, 0);
+        if(currentBombs < initialBombs){
+            currentBombs++;
+        }
+        
+        // Replace the last bomb sprite with a clear bomb sprite
+        Transform lastBomb = bombsParent.GetChild(currentBombs-1);
+        Destroy(lastBomb.gameObject);
+        GameObject clearBomb = Instantiate(bombPrefab, lastBomb.position, lastBomb.rotation, bombsParent);
+        clearBomb.transform.SetSiblingIndex(currentBombs);
+        clearBomb.transform.localPosition = lastBomb.localPosition;
     }
 }

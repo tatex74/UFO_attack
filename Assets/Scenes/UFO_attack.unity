@@ -1611,6 +1611,7 @@ MonoBehaviour:
   Explosion_4: {fileID: 8300000, guid: e83fe50083d9ffd47a3321a99041c6b6, type: 3}
   Explosion_5: {fileID: 8300000, guid: e83fe50083d9ffd47a3321a99041c6b6, type: 3}
   MegaBomb: {fileID: 8300000, guid: 820bbf3793b77f543b9fd31228e3f479, type: 3}
+  PowerUp: {fileID: 8300000, guid: 4b8331c10a40f774584fdbec69fb9889, type: 3}
   Music: {fileID: 8300000, guid: 8d04d462196e3b24a991e12aac9f7666, type: 3}
 --- !u!82 &2125805214
 AudioSource:
