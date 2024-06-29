@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Ennemi_2_bullet : MonoBehaviour
+public class Ennemi_bullet : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

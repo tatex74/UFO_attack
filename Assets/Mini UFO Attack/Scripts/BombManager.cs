@@ -1,0 +1,149 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class BombManager : MonoBehaviour
+{
+    // The prefab of the bomb sprite
+    public GameObject bombPrefab;
+
+    // The prefab of the dull bomb sprite
+    public GameObject dullBombPrefab;
+
+    // The parent object that contains the bomb sprites
+    public Transform bombsParent;
+
+    // The initial number of bombs
+    public int initialBombs = 4;
+
+    // The spacing between bomb sprites
+    public float bombSpacing = 0.5f;
+
+    // The current number of bombs
+    private int currentBombs;
+    public Transform player;
+
+    public SpriteRenderer whiteScreenSprite;
+
+    public float whiteScreenDuration = 1.0f;
+    private bool isBombActivated = false;
+    private float bombTimer = 0f;
+
+    private IEnnemi[] ennemis;
+
+    void Start()
+    {
+        // Initialize the current number of bombs
+        currentBombs = initialBombs;
+
+        // Instantiate the bomb sprites
+        for (int i = 0; i < currentBombs; i++)
+        {
+            GameObject bomb = Instantiate(bombPrefab, bombsParent);
+            bomb.transform.localPosition = new Vector3(i * bombSpacing, 0, 0);
+        }
+
+        // Initially, the white screen sprite should be disabled
+        whiteScreenSprite.gameObject.SetActive(false);
+
+        // Find and store references to enemy scripts
+        ennemis = new IEnnemi[]
+        {
+            GameObject.Find("Ennemi_1").GetComponent<Ennemi_1>(),
+            GameObject.Find("Ennemi_2").GetComponent<Ennemi_2>(),
+            GameObject.Find("Ennemi_3").GetComponent<Ennemi_3>(),
+            GameObject.Find("Ennemi_4").GetComponent<Ennemi_4>()
+        };
+    }
+
+    private void Update()
+    {
+        // Detect key press "A"
+        if (Input.GetKeyDown(KeyCode.Q) && currentBombs > 0)
+        {
+            UseBomb();
+        }
+
+        // If the bomb is activated, handle the timer and growing effect
+        if (isBombActivated)
+        {
+            bombTimer += Time.deltaTime;
+
+            // Calculate the scale factor based on the timer
+            float scaleFactor = 35* bombTimer / whiteScreenDuration;
+
+            // Scale the white screen sprite
+            whiteScreenSprite.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
+
+            // Center the white screen sprite on the player
+            whiteScreenSprite.transform.position = player.position;
+
+            // If the timer exceeds the duration, deactivate the effect
+            if (bombTimer > whiteScreenDuration)
+            {
+                DeactivateBomb();
+            }   
+        }
+    }
+
+    // Call this function when the player uses a bomb
+    public void UseBomb()
+    {
+        // Activate the bomb effect
+        whiteScreenSprite.gameObject.SetActive(true);
+        whiteScreenSprite.transform.localScale = Vector3.zero;
+
+        // Destroy enemy bullets
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.name == "Ennemi_Bullet")
+            {
+                Destroy(obj);
+            }
+        }
+
+        // Destroy enemies
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Ennemi");
+        foreach (GameObject enemyObject in enemies)
+        {
+            IEnnemi enemy = enemyObject.GetComponent<IEnnemi>();
+            if (enemy != null)
+            {
+                enemy.DestroyEnnemi(); // Call the DestroyEnemy method
+            }
+        }
+
+        // Activate the bomb flag and reset the timer
+        isBombActivated = true;
+        bombTimer = 0f;
+
+        // Decrement the current number of bombs
+        currentBombs--;
+
+        // Replace the last bomb sprite with a dull bomb sprite
+        Transform lastBomb = bombsParent.GetChild(currentBombs);
+        Destroy(lastBomb.gameObject);
+        GameObject dullBomb = Instantiate(dullBombPrefab, lastBomb.position, lastBomb.rotation, bombsParent);
+        dullBomb.transform.localPosition = lastBomb.localPosition;
+
+        FindObjectOfType<SoundManagerUFO>().PlaySound(12);
+    }
+
+    private void DeactivateBomb()
+    {
+        // Deactivate the bomb effect
+        whiteScreenSprite.gameObject.SetActive(false);
+        isBombActivated = false;
+    }
+
+    // Call this function when the player gains a bomb
+    public void GainBomb()
+    {
+        // Increment the current number of bombs
+        currentBombs++;
+
+        // Instantiate a new bomb sprite
+        GameObject bomb = Instantiate(bombPrefab, bombsParent);
+        bomb.transform.localPosition = new Vector3((currentBombs - 1) * bombSpacing, 0, 0);
+    }
+}

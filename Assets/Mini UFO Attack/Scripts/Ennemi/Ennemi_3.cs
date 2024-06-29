@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
-public class Ennemi_3 : MonoBehaviour
+public class Ennemi_3 : MonoBehaviour, IEnnemi
 {
     public GameObject explosion;
     public GameObject energy_ball_arc_prefab;
@@ -26,6 +26,7 @@ public class Ennemi_3 : MonoBehaviour
     void Start()
     {
         gameObject.name = "Ennemi_3";
+        gameObject.tag = "Ennemi";
         transform.position = new Vector3(8, Random.Range(-4f, 3f), 0);
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-5, 0);
@@ -85,21 +86,27 @@ public class Ennemi_3 : MonoBehaviour
         laser_anim.Play("Laser");
         energy_ball_anim.Play("EnergyBall");
         energy_ball_arc_anim.Play("EnergyBallArc");
+
+        FindObjectOfType<SoundManagerUFO>().PlaySound(5);
     }
 
     public void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.name == "Bullet") {
             pv -= 1;
             if (pv <= 0) {
-                GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-                Destroy(gameObject);
+                DestroyEnnemi();
             }
         }
         else if (collision.gameObject.name == "Player Starter") {
-            GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-            Destroy(gameObject);
+            DestroyEnnemi();
         }
+    }
+
+    public void DestroyEnnemi() {
+        GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        Destroy(gameObject);
+        FindObjectOfType<SoundManagerUFO>().PlaySound(8);
+        FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy3);
     }
 }

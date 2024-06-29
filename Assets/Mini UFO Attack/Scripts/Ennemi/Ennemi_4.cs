@@ -1,7 +1,7 @@
 using System.Data.Common;
 using UnityEngine;
 
-public class Ennemi_4 : MonoBehaviour
+public class Ennemi_4 : MonoBehaviour, IEnnemi
 {
     public GameObject bulletPrefab;
     public GameObject explosion;
@@ -25,6 +25,7 @@ public class Ennemi_4 : MonoBehaviour
      void Start()
     {
         gameObject.name = "Ennemi_4";
+        gameObject.tag = "Ennemi";
         transform.position = new Vector3(13, Random.Range(-4, 3), 0);
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = velocity;
@@ -112,17 +113,19 @@ public class Ennemi_4 : MonoBehaviour
         if (collision.gameObject.name == "Bullet") {
             pv -= 1;
             if (pv <= 0) {
-                GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-                Destroy(gameObject);
-                FindObjectOfType<SoundManagerUFO>().PlaySound(9);
+                DestroyEnnemi();
             }
-            FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy4);
         }
         else if (collision.gameObject.name == "Player Starter") {
-            GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-            Destroy(gameObject);
+            DestroyEnnemi();
         }
+    }
+
+    public void DestroyEnnemi() {
+        GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        Destroy(gameObject);
+        FindObjectOfType<SoundManagerUFO>().PlaySound(10);
+        FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy4);
     }
 }

@@ -4,7 +4,7 @@ using Unity.Properties;
 using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
-public class Ennemi_1 : MonoBehaviour
+public class Ennemi_1 : MonoBehaviour, IEnnemi
 {
     public GameObject explosion;
     public Sprite after_image_sprite;
@@ -17,6 +17,7 @@ public class Ennemi_1 : MonoBehaviour
     void Start()
     {
         gameObject.name = "Ennemi_1";
+        gameObject.tag = "Ennemi";
         transform.position = new Vector3(13, Random.Range(-4, 3), 0);
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-5, 0);
@@ -55,23 +56,15 @@ public class Ennemi_1 : MonoBehaviour
         if (collision.gameObject.name == "Bullet") {
             pv -= 1;
             if (pv <= 0) {
-                GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-                new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-                Destroy(gameObject);
-                FindObjectOfType<SoundManagerUFO>().PlaySound(6);
+                DestroyEnnemi();
             }
-            FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy1);
         }
         else if (collision.gameObject.name == "Player Starter") {
-            GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
-            new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
-            Destroy(gameObject);
-            FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy1);
-            FindObjectOfType<SoundManagerUFO>().PlaySound(6);
+            DestroyEnnemi();
         }
     }
 
-    void AfterImage() {
+    private void AfterImage() {
 
         after_image_timer += Time.deltaTime;
 
@@ -81,5 +74,13 @@ public class Ennemi_1 : MonoBehaviour
         
             Instantiate(after_image, new Vector3(transform.position.x, transform.position.y, 6), Quaternion.identity);
         }
+    }
+
+    public void DestroyEnnemi(){
+        GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        Destroy(gameObject);
+        FindObjectOfType<SoundManagerUFO>().PlaySound(6);
+        FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy1);
     }
 }
