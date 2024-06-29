@@ -49,6 +49,9 @@ public class Ennemi_4 : MonoBehaviour, IEnnemi
         }
     }
 
+    /// <summary>
+    /// Moves the object horizontally and changes direction every three seconds.
+    /// </summary>
     public void Mouvement() {
         pause_time -= Time.deltaTime;
         if ((pause_time <= 0) && isMoving){
@@ -70,6 +73,14 @@ public class Ennemi_4 : MonoBehaviour, IEnnemi
         }
     }
 
+    /// <summary>
+    /// Fires a bullet in the specified direction.
+    /// </summary>
+    /// <remarks>
+    /// This method creates a new bullet game object, calculates its direction based on the current angle,
+    /// sets its velocity, and plays a sound effect. The angle is incremented or decremented by 8 degrees
+    /// every time the method is called, until it reaches the specified angle range.
+    /// </remarks>
     private void Fire()
     {
         // Create a new bullet
@@ -98,6 +109,7 @@ public class Ennemi_4 : MonoBehaviour, IEnnemi
         FindObjectOfType<SoundManagerUFO>().PlaySound(4);
     }
 
+    // Spawns an after image every 0.1 seconds.
     void AfterImage() {
 
         after_image_timer += Time.deltaTime;
@@ -110,6 +122,13 @@ public class Ennemi_4 : MonoBehaviour, IEnnemi
         }
     }
 
+
+    /// <summary>
+    /// Decreases the player's health when it collides with the player's bullet.
+    /// If the player's health reaches 0, the player is destroyed.
+    /// If the player collides with the player, the enemy is destroyed.
+    /// </summary>
+    /// <param name="collision">The collision information.</param>
     public void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.name == "Bullet") {
             pv -= 1;
@@ -122,6 +141,9 @@ public class Ennemi_4 : MonoBehaviour, IEnnemi
         }
     }
 
+    /// <summary>
+    /// Destroys the enemy, plays a sound and increases the score.
+    /// </summary>
     public void DestroyEnnemi() {
         GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
