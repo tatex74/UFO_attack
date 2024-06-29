@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// SpawnerScript is a class responsible for spawning apples in the game.
+/// It uses Unity's Resources.Load() method to load the prefab of the apple.
+/// The spawning is done at a random position on the x-axis and a fixed position on the y-axis.
+/// The spawning frequency is determined by a timer which is decreased by Time.deltaTime in the Update() method.
+/// When the timer reaches 0, a new apple is instantiated and the timer is reset.
+/// </summary>
 public class SpawnerScript : MonoBehaviour
 {
     public AudioClip ref_audioClip;

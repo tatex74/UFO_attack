@@ -1,13 +1,27 @@
 using UnityEngine;
 
+/// <summary>
+/// LevelGenerator generates a grid of bricks with a specified size and probability of spawning.
+/// The bricks are placed in a folder specified by the brickFolder Transform.
+/// </summary>
 public class LevelGenerator : MonoBehaviour
 {
+    // Brick prefab to spawn
     public GameObject brickPrefab;
+
+    // Size of the grid
     public int gridSizeX = 10;
     public int gridSizeY = 10;
-    public float probability = 0.5f;
-    public Transform brickFolder; // Folder to store brick instances
 
+    // Probability of spawning a brick at a given position
+    public float probability = 0.5f;
+
+    // Folder to store brick instances
+    public Transform brickFolder;
+
+    /// <summary>
+    /// Generates the grid of bricks.
+    /// </summary>
     public void Start()
     {
         // Center the grid
@@ -18,6 +32,7 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 0; y < gridSizeY; y++)
             {
+                // Spawn a brick with probability
                 if (Random.value < probability)
                 {
                     // Calculate the position of the brick

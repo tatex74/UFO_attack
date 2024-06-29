@@ -7,6 +7,9 @@ using UnityEngine.Video;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// The player class controls the player's movement and manages the game timer.
+/// </summary>
 public class Player_Script : MonoBehaviour
 {
 
