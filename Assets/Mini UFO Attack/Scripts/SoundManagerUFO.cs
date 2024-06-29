@@ -20,6 +20,9 @@ public class SoundManagerUFO : MonoBehaviour
     public AudioClip MegaBomb;
     public AudioClip PowerUp;
     public AudioClip Music;
+    public AudioClip GameOverMusic;
+
+    public AudioClip Player_explosion;
 
     // The current sound
     private AudioClip currentSound;
@@ -75,6 +78,12 @@ public class SoundManagerUFO : MonoBehaviour
             case 13:
                 currentSound = PowerUp;
                 break;
+            case 14:
+                currentSound = Player_explosion;
+                break;
+            case 15:
+                currentSound = GameOverMusic;
+                break;
             default:
                 currentSound = null;
                 break;
@@ -85,5 +94,19 @@ public class SoundManagerUFO : MonoBehaviour
 
         // Play the sound using PlayOneShot
         audioSource.PlayOneShot(soundClip);
+    }
+
+    public void StopAllAudioSources()
+    {
+        // Trouver tous les objets de jeu avec des composants AudioSource
+        AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+
+        // Parcourir chaque AudioSource et arrêter la musique
+        foreach (AudioSource audioSource in allAudioSources)
+        {
+            audioSource.Stop();
+        }
+
+        Debug.Log("All music stopped.");
     }
 }

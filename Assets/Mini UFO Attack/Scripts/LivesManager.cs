@@ -45,7 +45,7 @@ public class LivesManager : MonoBehaviour
         if (currentLives <= 0)
         {
             // Game over! You can add your own game over logic here
-            Debug.Log("Game Over!");
+            FindObjectOfType<Player>().GameOver();
         }
     }
 

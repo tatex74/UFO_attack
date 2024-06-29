@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEditor.Callbacks;
 using UnityEngine;
 
@@ -7,6 +9,7 @@ public class Player : MonoBehaviour
 {
     public GameObject bullet;
     public GameObject after_image;
+    public GameObject explosion;
 
     private float mouv_speed = 8f;
     private Vector3 start_position = new Vector3(-5, 0, 0);
@@ -85,6 +88,19 @@ public class Player : MonoBehaviour
             FindObjectOfType<LivesManager>().LoseLife();
             FindObjectOfType<SoundManagerUFO>().PlaySound(2);
         }
+    }
+
+    public async void GameOver() {
+        GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        new_explosion.transform.localScale = new Vector3(0.8f, 0.8f, 0);
+        Destroy(gameObject);
+        FindObjectOfType<SoundManagerUFO>().StopAllAudioSources();
+        FindObjectOfType<SoundManagerUFO>().PlaySound(14);
+        // Wait for the specified delay
+        await Task.Delay(2 * 1000);
+        // Execute the action
+        FindObjectOfType<SoundManagerUFO>().PlaySound(15);
+        FindObjectOfType<GameOver>().ShowGameOver(FindObjectOfType<ScoreManager>().GetCurrentScore());
     }
 
 }

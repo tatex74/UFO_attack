@@ -38,6 +38,9 @@ public class ScoreManager : MonoBehaviour
         targetScore += scoreToAdd;
     }
 
+    public int GetCurrentScore() {
+        return currentScore;
+    }
     // Update is called once per frame
     void Update()
     {
