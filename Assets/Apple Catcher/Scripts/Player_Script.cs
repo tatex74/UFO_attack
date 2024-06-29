@@ -5,6 +5,7 @@ using TMPro;
 using System;
 using UnityEngine.Video;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Player_Script : MonoBehaviour
 {
@@ -76,7 +77,7 @@ public class Player_Script : MonoBehaviour
             //Quit game
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                Application.Quit();
+                SceneManager.LoadScene(0);
             }
 
             Timer();
