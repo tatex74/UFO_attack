@@ -1,11 +1,17 @@
 using UnityEngine;
 
+/// <summary>
+/// Controller class for the paddle.
+/// </summary>
 public class PaddleController : MonoBehaviour
 {
     public float speed = 10f;
     public float boundary = 7.5f; // Assuming the boundary of the game is at x = ±7.5
     public float maxBounceAngle = 75f;
 
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update()
     {
         float move = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
@@ -18,10 +24,17 @@ public class PaddleController : MonoBehaviour
         transform.position = newPosition;
     }
 
+    /// <summary>
+    /// Resets the paddle to the initial position
+    /// </summary>
     public void ResetPaddle(){
         transform.position = new Vector2(0f, transform.position.y);
     }
 
+    /// <summary>
+    /// Handles the collision with the ball
+    /// </summary>
+    /// <param name="collision">Collision info</param>
     private void OnCollisionEnter2D(Collision2D collision){
         BallController ball = collision.gameObject.GetComponent<BallController>();
 
