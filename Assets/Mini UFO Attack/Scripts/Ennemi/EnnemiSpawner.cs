@@ -37,8 +37,8 @@ public class EnnemiSpawner : MonoBehaviour
     {
         time_1 = 0f;
         time_2 = Random.Range(3, 6);
-        time_3 = Random.Range(5, 10);
-        time_4 = Random.Range(5, 10);
+        time_3 = Random.Range(15, 19);
+        time_4 = Random.Range(30, 35);
     }
 
     /// <summary>
@@ -74,7 +74,7 @@ public class EnnemiSpawner : MonoBehaviour
 
         if (time_1 <= 0) {
             Instantiate(ennemis[0], transform.position, Quaternion.identity);
-            time_1 = Random.Range(1, 4);
+            time_1 = Random.Range(1, 3);
         }
         if (time_2 <= 0) {
             Instantiate(ennemis[1], transform.position, Quaternion.identity);
@@ -82,11 +82,11 @@ public class EnnemiSpawner : MonoBehaviour
         }
         if (time_3 <= 0) {
             Instantiate(ennemis[2], transform.position, Quaternion.identity);
-            time_3 = Random.Range(5, 10);
+            time_3 = Random.Range(7, 10);
         }
         if (time_4 <= 0) {
             Instantiate(ennemis[3], transform.position, Quaternion.identity);
-            time_4 = Random.Range(5, 10);
+            time_4 = Random.Range(7, 10);
         }
     }
 }

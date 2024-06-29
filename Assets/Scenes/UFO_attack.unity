@@ -973,7 +973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa195c4a4b7b292488aee1268dbe3bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 1510949270}
+  gameOverPanel: {fileID: 1066604202}
   scoreText: {fileID: 616383448}
 --- !u!4 &706273540
 Transform:
@@ -984,7 +984,7 @@ Transform:
   m_GameObject: {fileID: 706273538}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 491.94308, y: 232.58098, z: 2.2526}
+  m_LocalPosition: {x: 491.94308, y: 232.58098, z: -0.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2045,7 +2045,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 519420031}
   m_PlaneDistance: 1
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -2874,6 +2874,8 @@ MonoBehaviour:
   MegaBomb: {fileID: 8300000, guid: 820bbf3793b77f543b9fd31228e3f479, type: 3}
   PowerUp: {fileID: 8300000, guid: 4b8331c10a40f774584fdbec69fb9889, type: 3}
   Music: {fileID: 8300000, guid: 8d04d462196e3b24a991e12aac9f7666, type: 3}
+  GameOverMusic: {fileID: 0}
+  Player_explosion: {fileID: 0}
 --- !u!82 &2125805214
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2992,8 +2994,8 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1958109190}
   - {fileID: 2125805215}
+  - {fileID: 706273540}
   - {fileID: 1886173406}
   - {fileID: 710466523}
   - {fileID: 1331705124}
   - {fileID: 1510949271}
-  - {fileID: 706273540}

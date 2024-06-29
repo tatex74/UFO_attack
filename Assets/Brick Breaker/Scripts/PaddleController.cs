@@ -45,12 +45,12 @@ public class PaddleController : MonoBehaviour
             float offset = paddlePosition.x - contactPoint.x;
             float width = collision.otherCollider.bounds.size.x / 2;
 
-            float currentAngle = Vector2.SignedAngle(Vector2.up, ball.rigidbody.velocity);
+            float currentAngle = Vector2.SignedAngle(Vector2.up, ball.GetComponent<Rigidbody>().velocity);
             float bounceAngle = (offset / width) * this.maxBounceAngle;
             float newAngle = Mathf.Clamp(currentAngle + bounceAngle, -maxBounceAngle, maxBounceAngle);
 
             Quaternion rotation = Quaternion.AngleAxis(newAngle, Vector3.forward);
-            ball.rigidbody.velocity = rotation * Vector2.up * ball.rigidbody.velocity.magnitude;
+            ball.GetComponent<Rigidbody>().velocity = rotation * Vector2.up * ball.GetComponent<Rigidbody>().velocity.magnitude;
         }
     }
 }

@@ -3,11 +3,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-using UnityEngine;
-using System.Collections;
-using TMPro;
-using UnityEngine.SceneManagement;
-
 /// <summary>
 /// Manages the game state and gameplay.
 /// </summary>

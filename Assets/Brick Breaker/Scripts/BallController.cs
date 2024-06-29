@@ -6,12 +6,12 @@ using UnityEngine;
 public class BallController : MonoBehaviour
 {
     // The rigidbody of the ball.
-    public new Rigidbody2D rigidbody { get; private set; }
+    public Rigidbody2D Rigidbody { get; private set; }
     // The speed of the ball.
     public float speed = 500f;
 
     private void Awake(){
-        rigidbody = GetComponent<Rigidbody2D>();
+        Rigidbody = GetComponent<Rigidbody2D>();
     }
 
     /// <summary>
@@ -19,7 +19,7 @@ public class BallController : MonoBehaviour
     /// </summary>
     public void ResetBall(){
         transform.position = new Vector2(0f, -4f);
-        rigidbody.velocity = Vector2.zero;
+        Rigidbody.velocity = Vector2.zero;
         Invoke(nameof(SetRandomTrajectory), 3f);
     }
 
@@ -31,7 +31,7 @@ public class BallController : MonoBehaviour
         force.x = Random.Range(-0.5f, 0.5f);
         force.y = -1f;
 
-        this.rigidbody.AddForce(force.normalized * speed);        
+        Rigidbody.AddForce(force.normalized * speed);        
     }
 
     /// <summary>

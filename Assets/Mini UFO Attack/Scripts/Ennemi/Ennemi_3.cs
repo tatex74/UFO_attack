@@ -27,7 +27,7 @@ public class Ennemi_3 : MonoBehaviour, IEnnemi
     private float x_stop = 7;
 
     // The number of hit points the Ennemi_3 has.
-    private int pv = 3;
+    private int pv = 7;
 
     // The pause gap between firing.
     private const float pause_gap = 3;
@@ -37,9 +37,6 @@ public class Ennemi_3 : MonoBehaviour, IEnnemi
 
     // The target y position of the Ennemi_3.
     private float target_y_pos;
-
-    // Flag to indicate if the Ennemi_3 has fired.
-    private bool done_fire;
 
     // The rigidbody component of the Ennemi_3.
     private Rigidbody2D rb;
