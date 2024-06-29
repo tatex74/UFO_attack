@@ -1,22 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// Ennemi_2 is an enemy that moves horizontally and fires bullets in pairs.
+/// </summary>
 public class Ennemi_2 : MonoBehaviour, IEnnemi
 {
+    // Bullet prefab to instantiate
     public GameObject bullet;
+    // Explosion prefab to instantiate when enemy is destroyed
     public GameObject explosion;
+    // PowerUp prefab to instantiate randomly when enemy is destroyed
     public GameObject powerUp;
+    // Sprite for the after image
     public Sprite after_image_sprite;
+    // GameObject for the after image
     public GameObject after_image;
+    // Timer for the after image
     private float after_image_timer = 0;
+    // Rigidbody2D component of this object
     private Rigidbody2D rb;
+    // Health points of the enemy
     private int pv = 5;
+    // Movement velocity of the enemy
     private Vector2 velocity = new Vector2(-3, 0);
+    // Timer for the enemy's movements
     private float pause_time = 2f;
+    // Flag indicating if the enemy is moving
     private bool isMoving = true;
-    private  float fire_frequency = 1f;
+    // Timer for bullet firing
+    private float fire_frequency = 1f;
+
     void Start()
     {
         gameObject.name = "Ennemi_2";
@@ -29,7 +42,6 @@ public class Ennemi_2 : MonoBehaviour, IEnnemi
         sr.sprite = after_image_sprite;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Mouvement();
@@ -41,13 +53,21 @@ public class Ennemi_2 : MonoBehaviour, IEnnemi
         }
     }
 
-    public void Mouvement() {
+    /// <summary>
+    /// Moves the enemy horizontally and changes direction every two seconds.
+    /// </summary>
+    public void Mouvement()
+    {
         pause_time -= Time.deltaTime;
-        if (pause_time <= 0) {
-            if (isMoving) {
+        if (pause_time <= 0)
+        {
+            if (isMoving)
+            {
                 rb.velocity = new Vector2(0, 0);
                 isMoving = false;
-            } else {
+            }
+            else
+            {
                 rb.velocity = velocity;
                 isMoving = true;
             }
@@ -55,9 +75,14 @@ public class Ennemi_2 : MonoBehaviour, IEnnemi
         }
     }
 
-    public void Fire() {
+    /// <summary>
+    /// Fires bullets in pairs every second.
+    /// </summary>
+    public void Fire()
+    {
         fire_frequency -= Time.deltaTime;
-        if (fire_frequency <= 0){
+        if (fire_frequency <= 0)
+        {
             GameObject new_bullet1 = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             GameObject new_bullet2 = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             Rigidbody2D rb1 = new_bullet1.GetComponent<Rigidbody2D>();
@@ -69,38 +94,55 @@ public class Ennemi_2 : MonoBehaviour, IEnnemi
         }
     }
 
-    public void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.name == "Bullet") {
+    /// <summary>
+    /// Called when the enemy collides with another object.
+    /// </summary>
+    /// <param name="collision">The collision that occurred.</param>
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Bullet")
+        {
             pv -= 1;
-            if (pv <= 0) {
+            if (pv <= 0)
+            {
                 DestroyEnnemi();
             }
         }
-        else if (collision.gameObject.name == "Player Starter") {
+        else if (collision.gameObject.name == "Player Starter")
+        {
             DestroyEnnemi();
         }
     }
 
-    void AfterImage() {
-
+    /// <summary>
+    /// Spawns an after image every 0.1 seconds.
+    /// </summary>
+    void AfterImage()
+    {
         after_image_timer += Time.deltaTime;
 
         if (after_image_timer >= 0.1f)
         {
             after_image_timer = 0f;
-        
+
             Instantiate(after_image, new Vector3(transform.position.x, transform.position.y, 6), Quaternion.identity);
         }
     }
 
-    public void DestroyEnnemi() {
+    /// <summary>
+    /// Destroys the enemy and spawns an explosion. Also increases the score and plays a sound. 
+    /// A powerUp is spawned with a 1/7 chance.
+    /// </summary>
+    public void DestroyEnnemi()
+    {
         GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
         Destroy(gameObject);
         FindObjectOfType<SoundManagerUFO>().PlaySound(7);
         FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy2);
-        
-        if (Random.Range(0, 7) == 0) {
+
+        if (Random.Range(0, 7) == 0)
+        {
             GameObject newPowerUp = Instantiate(powerUp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             Rigidbody2D rb = newPowerUp.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector2(-4f, 0);
