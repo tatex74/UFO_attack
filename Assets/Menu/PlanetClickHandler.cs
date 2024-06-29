@@ -11,4 +11,10 @@ public class PlanetClickHandler : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
         FindObjectOfType<SoundManagerMenu>().SelectGameSound();
     }
+
+    public void Update(){
+        if(Input.GetKey(KeyCode.Escape)){
+            Application.Quit();
+        }
+    }
 }
