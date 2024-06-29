@@ -2032,7 +2032,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayed_text: {fileID: 1248441415}
-  playing_time: 10
+  playing_time: 120
   displayed_timer: {fileID: 1150921008}
   spawner_script: {fileID: 1312995412}
 --- !u!82 &1572129571
