@@ -88,4 +88,5 @@ public class Player : MonoBehaviour
             FindObjectOfType<SoundManagerUFO>().PlaySound(2);
         }
     }
+
 }

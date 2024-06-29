@@ -26,7 +26,7 @@ public class Ennemi_3 : MonoBehaviour
     void Start()
     {
         gameObject.name = "Ennemi_3";
-        transform.position = new Vector3(8, Random.Range(-4f, 4f), 0);
+        transform.position = new Vector3(8, Random.Range(-4f, 3f), 0);
         rb = gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(-5, 0);
 
@@ -34,12 +34,14 @@ public class Ennemi_3 : MonoBehaviour
         energy_ball = Instantiate(energy_ball_prefab, new Vector3(transform.position.x-1, transform.position.y, transform.position.z), Quaternion.identity);
         energy_ball.name = "EnergyBall";
         laser = Instantiate(laser_prefab, new Vector3(transform.position.x-1, transform.position.y, transform.position.z), Quaternion.identity);
+        laser.name = "Laser";
     }
 
     // Update is called once per frame
     void Update()
     {
         Mouvement();
+
     }
 
     public void Mouvement() {
