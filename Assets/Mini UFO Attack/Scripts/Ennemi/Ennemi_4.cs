@@ -33,10 +33,6 @@ public class Ennemi_4 : MonoBehaviour, IEnnemi
 
         SpriteRenderer sr = after_image.GetComponent<SpriteRenderer>();
         sr.sprite = after_image_sprite;
-
-        GameObject newPowerUp = Instantiate(powerUp, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-        Rigidbody2D rbtest = newPowerUp.GetComponent<Rigidbody2D>();
-        rbtest.velocity = new Vector2(-4f, 0);
     }
 
     void Update()
