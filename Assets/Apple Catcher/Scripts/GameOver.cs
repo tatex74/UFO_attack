@@ -25,13 +25,13 @@ public class GameOver : MonoBehaviour
         gameOverPanel.SetActive(false);
         Time.timeScale = 1; // Resume the game
     }
-
+    // restart the game by reloding the scene
     public void RestartGame()
     {
         Time.timeScale = 1; // Resume the game in case it was paused
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
-
+    // Go back to the main menu scene 
     public void MainMenu()
     {
         Time.timeScale = 1; // Resume the game in case it was paused
