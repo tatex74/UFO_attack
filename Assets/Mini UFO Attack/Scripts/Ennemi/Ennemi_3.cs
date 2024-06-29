@@ -1,28 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Callbacks;
 using UnityEngine;
 
 public class Ennemi_3 : MonoBehaviour, IEnnemi
 {
+    // The explosion prefab to be instantiated when the Ennemi_3 is destroyed.
     public GameObject explosion;
+
+    // The energy ball arc prefab to be instantiated when the Ennemi_3 fires.
     public GameObject energy_ball_arc_prefab;
+
+    // The energy ball prefab to be instantiated when the Ennemi_3 fires.
     public GameObject energy_ball_prefab;
+
+    // The laser prefab to be instantiated when the Ennemi_3 fires.
     public GameObject laser_prefab;
 
+    // The instantiated energy ball arc game object.
     private GameObject energy_ball_arc;
+
+    // The instantiated energy ball game object.
     private GameObject energy_ball;
+
+    // The instantiated laser game object.
     private GameObject laser;
+
+    // The x position at which the Ennemi_3 stops moving.
     private float x_stop = 7;
+
+    // The number of hit points the Ennemi_3 has.
     private int pv = 3;
 
+    // The pause gap between firing.
     private const float pause_gap = 3;
+
+    // The time remaining until the Ennemi_3 can fire again.
     private float pause_time;
 
+    // The target y position of the Ennemi_3.
     private float target_y_pos;
+
+    // Flag to indicate if the Ennemi_3 has fired.
     private bool done_fire;
 
-    Rigidbody2D rb;
+    // The rigidbody component of the Ennemi_3.
+    private Rigidbody2D rb;
     void Start()
     {
         gameObject.name = "Ennemi_3";
@@ -45,6 +65,11 @@ public class Ennemi_3 : MonoBehaviour, IEnnemi
 
     }
 
+    /// <summary>
+    /// Movement function for the Ennemi_3 object.
+    /// This function handles the movement of the object based on its position and velocity.
+    /// It also handles the firing of the object and pausing its movements.
+    /// </summary>
     public void Mouvement() {
         // First approach
         if (transform.position.x <= x_stop && rb.velocity.x != 0) {
@@ -74,6 +99,9 @@ public class Ennemi_3 : MonoBehaviour, IEnnemi
         }
     }
 
+    /// <summary>
+    /// Fires lasers, energy balls, and energy ball arcs.
+    /// </summary>
     public void Fire() {
         Animator laser_anim = laser.GetComponent<Animator>();
         Animator energy_ball_anim = energy_ball.GetComponent<Animator>();
@@ -90,6 +118,12 @@ public class Ennemi_3 : MonoBehaviour, IEnnemi
         FindObjectOfType<SoundManagerUFO>().PlaySound(5);
     }
 
+    /// <summary>
+    /// Decreases the player's health when it collides with the player's bullet.
+    /// If the player's health reaches 0, the player is destroyed.
+    /// If the player collides with the player, the enemy is destroyed.
+    /// </summary>
+    /// <param name="collision">The collision information.</param>
     public void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.name == "Bullet") {
             pv -= 1;
@@ -102,11 +136,21 @@ public class Ennemi_3 : MonoBehaviour, IEnnemi
         }
     }
 
+    /// <summary>
+    /// Destroy the enemy and play sound and score adjustments.
+    /// </summary>
     public void DestroyEnnemi() {
-        GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
+        // Instantiate explosion effect
+        GameObject new_explosion = Instantiate(explosion, 
+        new Vector3(transform.position.x, transform.position.y, transform.position.z), 
+        Quaternion.identity);
+        // Set scale of explosion
         new_explosion.transform.localScale = new Vector3(0.3f, 0.3f, 0);
+        // Destroy enemy game object
         Destroy(gameObject);
+        // Play enemy destruction sound
         FindObjectOfType<SoundManagerUFO>().PlaySound(8);
+        // Adjust player score
         FindObjectOfType<ScoreManager>().AddScore(EnemyType.Enemy3);
     }
 }
