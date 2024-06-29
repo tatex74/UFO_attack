@@ -98,6 +98,7 @@ public class Player_Script : MonoBehaviour
         as_catch.Play();
     }
 
+
     void Timer() {
         timer -= Time.deltaTime;
         if (timer > 0) {
@@ -118,6 +119,7 @@ public class Player_Script : MonoBehaviour
         
     }
 
+    // Stop the music and call the Game over panel
     private void GameOver(){
         //SoundManagerBB.Instance.PlayGameOverSound();
         as_music.Pause();
