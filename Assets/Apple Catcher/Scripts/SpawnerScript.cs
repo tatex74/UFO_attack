@@ -5,8 +5,6 @@ using UnityEngine;
 public class SpawnerScript : MonoBehaviour
 {
     public AudioClip ref_audioClip;
-    public SpriteRenderer fader_renderer;
-
     protected GameObject apple_prefab;
     protected float timer = 3f;
     protected AudioSource ref_audioSource;
@@ -17,13 +15,6 @@ public class SpawnerScript : MonoBehaviour
     {
         
         apple_prefab = Resources.Load<GameObject>("Apple_prefab");
-
-        ref_audioSource = gameObject.AddComponent<AudioSource>();
-        ref_audioSource.loop = true;
-        ref_audioSource.volume = 0.5f;
-        ref_audioSource.clip = ref_audioClip;
-
-        StartCoroutine( FadeOutFromWhite() );
 
     }
 
@@ -42,23 +33,5 @@ public class SpawnerScript : MonoBehaviour
             timer = 0.5f + Random.value*1f ;
         }
         
-    }
-
-    //Coroutine to fade out from white/launch music with a delay
-    IEnumerator FadeOutFromWhite()
-    {
-        yield return new WaitForSeconds(0.5f);
-
-        ref_audioSource.Play();
-
-        while (current_alpha > 0)
-        {
-            current_alpha -= Time.deltaTime / 2;
-            fader_renderer.color = new Color(1, 1, 1, current_alpha);
-            yield return null;
-        }
-
-        Destroy(fader_renderer.gameObject);
-
     }
 }

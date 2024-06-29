@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.Video;
+using UnityEngine.UIElements;
 
 public class Player_Script : MonoBehaviour
 {
@@ -17,7 +19,8 @@ public class Player_Script : MonoBehaviour
 
     protected int score;
     protected float timer;
-    protected AudioSource ref_audioSource;
+    protected AudioSource as_catch;
+    protected AudioSource as_music;
     protected Animator ref_animator;
 
     //---------------------------------------------------------------------------------
@@ -26,10 +29,13 @@ public class Player_Script : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        ref_audioSource = GetComponent<AudioSource>();
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        as_catch = audioSources[0];
+        as_music = audioSources[1];
         ref_animator = GetComponent<Animator>();
         timer = playing_time;
         score = 0;
+        as_music.Play();
     }
 
     // Update is called once per frame
@@ -88,7 +94,7 @@ public class Player_Script : MonoBehaviour
         score++;
         displayed_text.SetText("Score : " + score);
 
-        ref_audioSource.Play();
+        as_catch.Play();
     }
 
     void Timer() {
@@ -113,7 +119,7 @@ public class Player_Script : MonoBehaviour
 
     private void GameOver(){
         //SoundManagerBB.Instance.PlayGameOverSound();
-
+        as_music.Pause();
         FindObjectOfType<GameOver>().ShowGameOver(score);
     
     }

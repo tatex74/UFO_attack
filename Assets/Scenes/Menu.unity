@@ -1146,7 +1146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e8d403f43e8a0046842cca3fa5c0646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
+  sceneToLoad: AppleCatcher
 --- !u!1 &1539736904
 GameObject:
   m_ObjectHideFlags: 0
