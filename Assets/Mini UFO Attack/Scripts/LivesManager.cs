@@ -1,6 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Class responsible for managing the player's lives and displaying
+/// the corresponding life sprites.
+/// </summary>
 public class LivesManager : MonoBehaviour
 {
     // The prefab of the life sprite
@@ -31,7 +35,9 @@ public class LivesManager : MonoBehaviour
         }
     }
 
-    // Call this function when the player loses a life
+    /// <summary>
+    /// Called when the player loses a life.
+    /// </summary>
     public void LoseLife()
     {
         // Decrement the current number of lives
@@ -49,7 +55,9 @@ public class LivesManager : MonoBehaviour
         }
     }
 
-    // Call this function when the player gains a life
+    /// <summary>
+    /// Called when the player gains a life.
+    /// </summary>
     public void GainLife()
     {
         // Increment the current number of lives

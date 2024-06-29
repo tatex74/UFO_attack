@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// EnnemiSpawner is a script that spawns enemies at specific intervals.
+/// The spawn times increase periodically to increase the difficulty.
+/// </summary>
 public class EnnemiSpawner : MonoBehaviour
 {
     public GameObject[] ennemis;
@@ -26,6 +30,9 @@ public class EnnemiSpawner : MonoBehaviour
         SpawnEnemies();
     }
 
+    /// <summary>
+    /// Initialize the spawn times for the enemies.
+    /// </summary>
     void InitializeSpawnTimes()
     {
         time_1 = 0f;
@@ -34,6 +41,9 @@ public class EnnemiSpawner : MonoBehaviour
         time_4 = Random.Range(5, 10);
     }
 
+    /// <summary>
+    /// Update the spawn times for the enemies based on time passed.
+    /// </summary>
     void UpdateSpawnTimes()
     {
         timePassed += Time.deltaTime;
@@ -41,7 +51,7 @@ public class EnnemiSpawner : MonoBehaviour
         // Increase difficulty periodically
         if (timePassed >= spawnRateIncreaseInterval)
         {
-            // Example: Decrease spawn times to make enemies spawn more frequently
+            // Decrease spawn times to make enemies spawn more frequently
             time_1 = Mathf.Max(time_1 - 0.5f, 1f); // Decrease by 0.5 seconds with a lower limit of 1 second
             time_2 = Mathf.Max(time_2 - 0.5f, 1f);
             time_3 = Mathf.Max(time_3 - 0.5f, 1f);
@@ -52,6 +62,9 @@ public class EnnemiSpawner : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawn enemies based on their respective spawn times.
+    /// </summary>
     void SpawnEnemies()
     {
         time_1 -= Time.deltaTime;
@@ -78,6 +91,9 @@ public class EnnemiSpawner : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Interface for enemy objects that can be destroyed.
+/// </summary>
 public interface IEnnemi
 {
     void DestroyEnnemi();

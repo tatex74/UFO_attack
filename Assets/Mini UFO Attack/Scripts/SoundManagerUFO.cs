@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.Audio;
 
+/// <summary>
+/// Class that manages the sounds for the game.
+/// </summary>
 public class SoundManagerUFO : MonoBehaviour
 {
     // The audio source component
@@ -27,13 +30,19 @@ public class SoundManagerUFO : MonoBehaviour
     // The current sound
     private AudioClip currentSound;
 
+    /// <summary>
+    /// Initializes the audio source.
+    /// </summary>
     void Start()
     {
         // Initialize the audio source
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Play a sound
+    /// <summary>
+    /// Plays a sound.
+    /// </summary>
+    /// <param name="soundIndex">The index of the sound to play.</param>
     public void PlaySound(int soundIndex)
     {
         // Get the corresponding sound clip
@@ -96,6 +105,9 @@ public class SoundManagerUFO : MonoBehaviour
         audioSource.PlayOneShot(soundClip);
     }
 
+    /// <summary>
+    /// Stops all audio sources.
+    /// </summary>
     public void StopAllAudioSources()
     {
         // Trouver tous les objets de jeu avec des composants AudioSource

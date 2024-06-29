@@ -1,12 +1,12 @@
 using UnityEngine;
 using TMPro;
 
+/// <summary>
+/// ScoreManager is a MonoBehaviour that manages the score display and gradual increase.
+/// </summary>
 public class ScoreManager : MonoBehaviour
 {
-    // The TextMesh Pro component that displays the score
     public TextMeshPro scoreText;
-
-    // The initial score
     public int initialScore = 0;
 
     // The current score
@@ -14,8 +14,6 @@ public class ScoreManager : MonoBehaviour
 
     // The target score for gradual increase
     private int targetScore;
-
-    // Speed of score increase per second
     public float scoreIncreaseSpeed = 50f;
 
     void Start()
@@ -28,7 +26,10 @@ public class ScoreManager : MonoBehaviour
         UpdateScoreText();
     }
 
-    // Call this function when the player defeats an enemy
+    /// <summary>
+    /// Call this function when the player defeats an enemy.
+    /// </summary>
+    /// <param name="enemyType">The type of enemy defeated.</param>
     public void AddScore(EnemyType enemyType)
     {
         // Calculate the score to be added based on enemy type
@@ -56,12 +57,19 @@ public class ScoreManager : MonoBehaviour
     }
 
     // Update the score text
+    /// <summary>
+    /// Update the score text.
+    /// </summary>
     private void UpdateScoreText()
     {
         scoreText.SetText(currentScore.ToString());
     }
-
-    // Get the score value for each enemy type
+    
+    /// <summary>
+    /// Get the score value for each enemy type.
+    /// </summary>
+    /// <param name="enemyType">The type of enemy.</param>
+    /// <returns>The score value for the enemy type.</returns>
     private int GetScoreForEnemy(EnemyType enemyType)
     {
         switch (enemyType)

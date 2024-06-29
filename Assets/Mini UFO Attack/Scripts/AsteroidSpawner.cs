@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
 
+/// <summary>
+/// Spawns asteroids at random positions and velocities.
+/// </summary>
 public class Asteroids : MonoBehaviour
 {
     public GameObject asteroid_prefab;

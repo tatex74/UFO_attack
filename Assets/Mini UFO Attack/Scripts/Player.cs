@@ -17,6 +17,9 @@ public class Player : MonoBehaviour
     private float after_image_timer = 0;
     private float bullet_timer = 0;
 
+    /// <summary>
+    /// Called when the game starts. Sets the GameObject's position to the target position and plays the music loop.
+    /// </summary>
     void Start()
     {
         // Set the GameObject's position to the target position
@@ -37,6 +40,9 @@ public class Player : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Moves the player based on keyboard input.
+    /// </summary>
     void PlayerMouvement() {
         if (Input.GetKey(KeyCode.RightArrow)) {
             if (transform.position.x < -2.5f) {
@@ -50,7 +56,7 @@ public class Player : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.UpArrow)) {
             if (transform.position.y < 3f) {
-                transform.Translate(0, mouv_speed * Time.deltaTime, 0);
+                transform.Translate(0,mouv_speed * Time.deltaTime, 0);
             }
         }
         else if (Input.GetKey(KeyCode.DownArrow)) {
@@ -60,9 +66,14 @@ public class Player : MonoBehaviour
         } 
     }
 
-    void Fire() {
+    /// <summary>
+    /// Fires a bullet based on keyboard input and plays a sound.
+    /// </summary>
+    void Fire()
+    {
         bullet_timer -= Time.deltaTime;
-        if (Input.GetKey(KeyCode.Space) && bullet_timer <= 0) {
+        if (Input.GetKey(KeyCode.Space) && bullet_timer <= 0)
+        {
             GameObject new_bullet = Instantiate(bullet, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
             rb = new_bullet.GetComponent<Rigidbody2D>();
             rb.velocity = new Vector3(20, 0, 0);
@@ -71,7 +82,11 @@ public class Player : MonoBehaviour
         }
     }
 
-    void AfterImage() {
+    /// <summary>
+    /// Spawns an after image every 0.1 seconds.
+    /// </summary>
+    void AfterImage()
+    {
 
         after_image_timer += Time.deltaTime;
 
@@ -83,6 +98,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the game object collides with another object.
+    /// If the collided object is not a bullet or power up, loses a life, plays a sound, and destroys the game object.
+    /// </summary>
+    /// <param name="collision">The collision that occurred.</param>
     public void OnCollisionEnter2D(Collision2D collision) {
         if ((collision.gameObject.name != "Bullet") && (collision.gameObject.name != "PowerUp")) {
             FindObjectOfType<LivesManager>().LoseLife();
@@ -90,6 +110,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called when the game is over. Spawns an explosion, stops all audio sources, plays sounds, waits for 2 seconds, then shows the game over screen.
+    /// </summary>
     public async void GameOver() {
         GameObject new_explosion = Instantiate(explosion, new Vector3(transform.position.x, transform.position.y, transform.position.z), Quaternion.identity);
         new_explosion.transform.localScale = new Vector3(0.8f, 0.8f, 0);

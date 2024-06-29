@@ -28,6 +28,10 @@ public class BombManager : MonoBehaviour
     private bool isBombActivated = false;
     private float bombTimer = 0f;
 
+    /// <summary>
+    /// Initializes the bomb manager and sets up the initial bomb sprites.
+    /// Also tries to find and store references to enemy scripts.
+    /// </summary>
     void Start()
     {
         // Initialize the current number of bombs
@@ -45,6 +49,7 @@ public class BombManager : MonoBehaviour
 
         try{
             // Find and store references to enemy scripts
+            // Note: This may fail if the enemy scripts are not yet initialized
             IEnnemi[] ennemis = new IEnnemi[]
             {
                 FindObjectOfType<Ennemi_1>().GetComponent<Ennemi_1>(),
@@ -56,6 +61,10 @@ public class BombManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// Handles the bomb activation and growing effect.
+    /// </summary>
     private void Update()
     {
         // Detect key press "A"
@@ -70,7 +79,7 @@ public class BombManager : MonoBehaviour
             bombTimer += Time.deltaTime;
 
             // Calculate the scale factor based on the timer
-            float scaleFactor = 35* bombTimer / whiteScreenDuration;
+            float scaleFactor = 35f * bombTimer / whiteScreenDuration;
 
             // Scale the white screen sprite
             whiteScreenSprite.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
@@ -82,11 +91,16 @@ public class BombManager : MonoBehaviour
             if (bombTimer > whiteScreenDuration)
             {
                 DeactivateBomb();
-            }   
+            }
         }
     }
 
-    // Call this function when the player uses a bomb
+    /// <summary>
+    /// Call this function when the player uses a bomb
+    /// Activates the bomb effect, destroys enemy bullets and enemies, 
+    /// activates the bomb flag, resets the timer, decrements the current number of bombs, 
+    /// and replaces the last bomb sprite with a dull bomb sprite.
+    /// </summary>
     public void UseBomb()
     {
         // Activate the bomb effect
@@ -131,6 +145,9 @@ public class BombManager : MonoBehaviour
         FindObjectOfType<SoundManagerUFO>().PlaySound(12);
     }
 
+    /// <summary>
+    /// Deactivates the bomb effect.
+    /// </summary>
     private void DeactivateBomb()
     {
         // Deactivate the bomb effect
@@ -138,7 +155,10 @@ public class BombManager : MonoBehaviour
         isBombActivated = false;
     }
 
-    // Call this function when the player gains a bomb
+    /// <summary>
+    /// Call this function when the player gains a bomb.
+    /// Increments the current number of bombs and replaces the last bomb sprite with a clear bomb sprite.
+    /// </summary>
     public void GainBomb()
     {
         // Increment the current number of bombs
